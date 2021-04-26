@@ -79,4 +79,42 @@ public class TicketOfficeTest {
     }
 
 
+    @Test
+    void it_should_return_Reservation_with_seats_empty_and_seats_booked_when_makeReservation() throws BookingException {
+
+        //GIVEN
+        String expectedTrainId = "1";
+        int numberOfSeats = 2;
+
+        String expectedBookingReference = "1524d";
+        when(bookingReferenceService.get()).thenReturn(expectedBookingReference);
+
+        Seat seat1A = new Seat("A", 1, "541563");
+        Seat seat2A = new Seat("A", 2, "");
+        Seat seat3A = new Seat("A", 3, "2575");
+        Seat seat4B = new Seat("B", 4, "");
+        Seat seat5B = new Seat("B", 5, "5875");
+
+        List<Seat> inputSeats = Arrays.asList(seat1A, seat2A, seat3A, seat4B, seat5B);
+        TrainDataResponse trainDataResponse = new TrainDataResponse(inputSeats);
+        when(trainDataService.get(expectedTrainId)).thenReturn(trainDataResponse);
+
+        TicketOffice ticketOffice = new TicketOffice(trainDataService, bookingReferenceService);
+
+        List<Seat> expectedSeats = Arrays.asList(seat2A, seat4B);
+        Reservation expectedReservation = new Reservation(expectedTrainId, expectedSeats, expectedBookingReference);
+
+        ReservationRequest reservationRequest = new ReservationRequest(expectedTrainId, numberOfSeats);
+
+        //WHEN
+        Reservation actualReservation = ticketOffice.makeReservation(reservationRequest);
+
+        //THEN
+        Assertions.assertThat(actualReservation.getBookingId()).isEqualTo(expectedReservation.getBookingId());
+        Assertions.assertThat(actualReservation.getTrainId()).isEqualTo(expectedReservation.getTrainId());
+        Assertions.assertThat(actualReservation.getSeats()).isEqualTo(expectedReservation.getSeats());
+
+    }
+
+
 }

@@ -20,9 +20,9 @@ public class TicketOffice {
         TrainDataResponse trainDataResponse = trainDataService.get(request.getTrainId());
 
         List<Seat> seats = trainDataResponse.getSeats();
-        Long countSeatsBooked = seats.stream().filter(seat -> seat.getBookingId().length() != 0).count();
+        Long countSeatsBooked = seats.stream().filter(seat -> seat.getBookingId().length() == 0).count();
 
-        if(countSeatsBooked > 0){
+        if(countSeatsBooked < request.getSeatCount()){
            throw new BookingException("The seats have already a booking reference");
         };
 
