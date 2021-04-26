@@ -13,6 +13,18 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
+    public String getCoach() {
+        return coach;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public String getBookingId() {
+        return bookingId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

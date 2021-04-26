@@ -15,10 +15,15 @@ public class TicketOffice {
 
     }
 
-    public Reservation makeReservation(ReservationRequest request) {
+    public Reservation makeReservation(ReservationRequest request) throws BookingException {
         String expectedBookingReference = bookingReferenceService.get();
         TrainDataResponse trainDataResponse = trainDataService.get(request.getTrainId());
+        String bookingIdFromSeatOne = trainDataResponse.getSeats().get(0).getBookingId();
+        String bookingIdFromSeatTwo = trainDataResponse.getSeats().get(1).getBookingId();
 
+        if(bookingIdFromSeatOne.length() != 0 || bookingIdFromSeatTwo.length() != 0 ){
+            throw new BookingException("The seats have already a booking reference");
+        }
         return new Reservation(request.getTrainId(), trainDataResponse.getSeats() , expectedBookingReference);
     }
 
