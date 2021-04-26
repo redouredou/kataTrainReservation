@@ -4,8 +4,12 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.redarolla.booking.BookingReferenceService;
+import org.redarolla.reservation.TicketOffice;
+import org.redarolla.traindata.Seat;
+import org.redarolla.traindata.TrainDataResponse;
+import org.redarolla.traindata.TrainDataService;
 
 import java.util.Arrays;
 import java.util.List;

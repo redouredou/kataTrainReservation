@@ -1,4 +1,4 @@
-package org.redarolla;
+package org.redarolla.traindata;
 
 import java.util.Objects;
 

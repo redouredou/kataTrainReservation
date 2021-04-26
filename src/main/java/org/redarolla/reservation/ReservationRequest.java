@@ -1,4 +1,4 @@
-package org.redarolla;
+package org.redarolla.reservation;
 
 public class ReservationRequest {
     public final String trainId;

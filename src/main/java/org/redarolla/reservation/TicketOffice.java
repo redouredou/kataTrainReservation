@@ -1,6 +1,11 @@
-package org.redarolla;
+package org.redarolla.reservation;
 
-import java.util.Arrays;
+import org.redarolla.booking.BookingException;
+import org.redarolla.booking.BookingReferenceService;
+import org.redarolla.traindata.Seat;
+import org.redarolla.traindata.TrainDataResponse;
+import org.redarolla.traindata.TrainDataService;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package org.redarolla;
+package org.redarolla.booking;
 
 public class BookingReferenceServiceImpl implements BookingReferenceService {
 

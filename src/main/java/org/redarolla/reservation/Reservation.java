@@ -1,4 +1,6 @@
-package org.redarolla;
+package org.redarolla.reservation;
+
+import org.redarolla.traindata.Seat;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,5 +39,14 @@ public class Reservation {
     @Override
     public int hashCode() {
         return Objects.hash(trainId, bookingId, seats);
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "trainId='" + trainId + '\'' +
+                ", bookingId='" + bookingId + '\'' +
+                ", seats=" + seats +
+                '}';
     }
 }

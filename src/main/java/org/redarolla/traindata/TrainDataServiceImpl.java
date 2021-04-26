@@ -1,4 +1,4 @@
-package org.redarolla;
+package org.redarolla.traindata;
 
 public class TrainDataServiceImpl implements TrainDataService {
 
