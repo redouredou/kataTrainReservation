@@ -1,5 +1,8 @@
 package org.redarolla;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TicketOffice {
 
     private TrainDataService trainDataService;
@@ -15,7 +18,8 @@ public class TicketOffice {
     public Reservation makeReservation(ReservationRequest request) {
         String expectedBookingReference = bookingReferenceService.get();
         TrainDataResponse trainDataResponse = trainDataService.get("1");
-        return new Reservation(null, null , "1524d");
+        List<Seat> seats = Arrays.asList(new Seat("A", 1, ""), new Seat("A", 2, ""));
+        return new Reservation("1", seats , "1524d");
     }
 
     public TrainDataResponse getTrainData(String trainId){

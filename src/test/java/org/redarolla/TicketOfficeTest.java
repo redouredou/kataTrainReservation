@@ -46,6 +46,7 @@ public class TicketOfficeTest {
 
         //THEN
         Assertions.assertThat(actualReservation.getBookingId()).isEqualTo(expectedReservation.getBookingId());
-
+        Assertions.assertThat(actualReservation.getTrainId()).isEqualTo(expectedReservation.getTrainId());
+        Assertions.assertThat(actualReservation.getSeats()).isEqualTo(expectedReservation.getSeats());
     }
 }
