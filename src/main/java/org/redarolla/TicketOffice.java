@@ -17,9 +17,9 @@ public class TicketOffice {
 
     public Reservation makeReservation(ReservationRequest request) {
         String expectedBookingReference = bookingReferenceService.get();
-        TrainDataResponse trainDataResponse = trainDataService.get("1");
-        List<Seat> seats = Arrays.asList(new Seat("A", 1, ""), new Seat("A", 2, ""));
-        return new Reservation("1", seats , "1524d");
+        TrainDataResponse trainDataResponse = trainDataService.get(request.getTrainId());
+
+        return new Reservation(request.getTrainId(), trainDataResponse.getSeats() , expectedBookingReference);
     }
 
     public TrainDataResponse getTrainData(String trainId){

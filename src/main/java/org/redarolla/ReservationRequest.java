@@ -8,4 +8,12 @@ public class ReservationRequest {
         this.trainId = trainId;
         this.seatCount = seatCount;
     }
+
+    public String getTrainId() {
+        return trainId;
+    }
+
+    public int getSeatCount() {
+        return seatCount;
+    }
 }
