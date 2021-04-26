@@ -2,6 +2,7 @@ package org.redarolla;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TicketOffice {
 
@@ -20,13 +21,18 @@ public class TicketOffice {
         TrainDataResponse trainDataResponse = trainDataService.get(request.getTrainId());
 
         List<Seat> seats = trainDataResponse.getSeats();
-        Long countSeatsBooked = seats.stream().filter(seat -> seat.getBookingId().length() == 0).count();
+        List<Seat> freeSeats = seats
+                .stream()
+                .filter(seat -> seat.getBookingId().length() == 0)
+                .collect(Collectors.toList());
+
+        int countSeatsBooked = freeSeats.size();
 
         if(countSeatsBooked < request.getSeatCount()){
            throw new BookingException("The seats have already a booking reference");
         };
 
-        return new Reservation(request.getTrainId(), trainDataResponse.getSeats() , expectedBookingReference);
+        return new Reservation(request.getTrainId(), freeSeats , expectedBookingReference);
     }
 
     public TrainDataResponse getTrainData(String trainId){
